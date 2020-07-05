@@ -1,0 +1,22 @@
+.register-background {
+
+}
+.form-wrapper {
+    border: 2px solid black;
+    margin: 10% 70% 0 20%;
+}
+.card-header {
+    border: 2px solid blue;
+    text-align: center;
+}
+.card-body {
+    border: 2px solid red;
+    text-align: right;
+    padding: 10px 0 10px 0;
+}
+.form-group {
+    padding: 10px 0 0 0;
+}
+.form-button {
+    margin: 10px 0 0 0;
+}

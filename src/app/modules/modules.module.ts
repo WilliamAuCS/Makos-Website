@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutComponent } from './about/about.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { LfiComponent } from './lfi/lfi.component';
-import { EducationComponent } from './education/education.component';
-
+import { AuthenticationModule } from './authentication/authentication.module';
 
 
 @NgModule({
-  declarations: [AboutComponent, GalleryComponent, LfiComponent, EducationComponent],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule, 
+    AuthenticationModule, 
   ]
 })
 export class ModulesModule { }
