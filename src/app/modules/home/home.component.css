@@ -1,13 +1,3 @@
-.homeBackground {
-    background-image: url(../../../assets/background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    color: white;
-}
 .home-wrapper {
     margin: 15% auto;
     width: 80%;

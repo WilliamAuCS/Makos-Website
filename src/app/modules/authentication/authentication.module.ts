@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterModule } from './register/register.module';
-import { LoginModule } from './login/login.module';
 import { EventsModule } from './events/events.module';
 import { SpecialEventsModule } from './special-events/special-events.module';
 
@@ -10,8 +9,7 @@ import { SpecialEventsModule } from './special-events/special-events.module';
   declarations: [],
   imports: [
     CommonModule, 
-    RegisterModule, 
-    LoginModule,
+    RegisterModule,
     EventsModule,
     SpecialEventsModule,
   ]

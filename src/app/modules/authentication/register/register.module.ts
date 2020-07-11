@@ -5,6 +5,7 @@ import { RegisterComponent } from './register.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AuthService } from '../auth.service';
     CommonModule, 
     SharedModule, 
     HttpClientModule,
+    MatButtonModule,
   ], 
   providers: [AuthService]
 })

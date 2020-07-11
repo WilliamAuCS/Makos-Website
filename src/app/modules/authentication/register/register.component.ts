@@ -13,32 +13,47 @@ export class RegisterComponent implements OnInit {
   public userInfo: FormGroup;
 
   constructor(private fb: FormBuilder,
-      private _auth: AuthService,
-      private _router: Router) { }
+    private _auth: AuthService,
+    private _router: Router) { }
 
   ngOnInit(): void {
+    document.body.style.backgroundImage = "url(../../../assets/background.jpg)";
     // Initializing userInfo group
     this.userInfo = this.fb.group({
-      email: [null, Validators.required], 
+      email: [null, Validators.required],
       password: [null, Validators.required],
     });
   }
 
-  registerUser()
-  {
-    // passing userInfo to registerUser auth.service
+  registerUser() {
+    // Passing userInfo to registerUser auth.service
     this._auth.registerUser(this.userInfo.value)
-    // Subscribing to observable
-    .subscribe(
-      // Log either response or error
-      res => {
-        console.log(res)
-        //localStorage.setItem('token', res.token) 
-        //this._router.navigate(['/special'])
-      },
-      err => console.log(err)
-    )
-    // console.log(this.userInfo.valid)
+      // Subscribing to observable
+      .subscribe(
+        // Log either response or error
+        res => {
+          // REMOVE AFTER TESTING
+          console.log(res)
+          localStorage.setItem('token', res.token)
+          this._router.navigate(['/'])
+        },
+        err => { console.log(err) }
+      )
   }
 
+  loginUser() {
+    // Passing userInfo to registerUser auth.service
+    this._auth.loginUser(this.userInfo.value)
+      // Subscribing to observable
+      .subscribe(
+        // Log either response or error
+        res => {
+          // REMOVE AFTER TESTING
+          console.log(res)
+          localStorage.setItem('token', res.token)
+          this._router.navigate(['/'])
+        },
+        err => { console.log(err) }
+      )
+  }
 }

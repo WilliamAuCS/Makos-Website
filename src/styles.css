@@ -12,3 +12,9 @@ a {
   a:hover {
     opacity: 0.8;
   }
+
+  body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }

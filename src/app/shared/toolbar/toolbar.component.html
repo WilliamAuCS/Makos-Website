@@ -33,12 +33,7 @@
   </a>
 </mat-toolbar>
 
-
 <mat-sidenav-container class="sidenav-wrapper" [hasBackdrop]='false' autosize>
-
-  <mat-sidenav-content>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
 
   <mat-sidenav #sideNav mode='over' class="sidenav-content" autoFocus="false">
 
@@ -49,5 +44,9 @@
     <a [routerLink]="['/register']">Login/Register</a>
 
   </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
 
 </mat-sidenav-container>

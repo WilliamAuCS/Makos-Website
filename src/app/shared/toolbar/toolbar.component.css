@@ -7,6 +7,7 @@
 
 .sidenav-wrapper {
     height: calc(100% - 64px);
+    background: inherit;
 }
 .dropdown-wrapper {
     display: none;
