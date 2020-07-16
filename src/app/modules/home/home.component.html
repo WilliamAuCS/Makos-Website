@@ -1,7 +1,7 @@
-    <div [ngClass]="mobileView == false && tabletView == false ? 'home-wrapper': 'home-wrapper-tablet logocontainer-tablet background-text-tablet'">
-        <div class="logo-container fade-in">
-            <img id="background-logo" src="../../../assets/JA-Makos_Logo.PNG">
-            <h1 id="background-text">Leather Atelier</h1>
-        </div>
-    </div> 
-    
+<div [ngClass]="!tabletView ? 'home-wrapper': 'home-wrapper-tablet'">
+    <div
+        [ngClass]="!mobileView && !tabletView ? 'logo-container': tabletView ? 'logo-container-tablet': 'logo-container-mobile'" class="fade-in">
+        <img id="background-logo" src="../../../assets/JA-Makos_Logo.PNG">
+        <h1 [ngClass]="!tabletView ? 'background-text': 'background-text-tablet'">Leather Atelier</h1>
+    </div>
+</div>
