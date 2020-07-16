@@ -13,8 +13,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    document.body.style.backgroundImage = "url(../../../assets/background.jpg)";
-    
+   
     // Changes width depending on the width of the user's screen
     // ** Currently non-responsive **
     if(window.screen.width <= 960 && window.screen.width > 500)

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './home/home.module';
+import { GalleryModule } from './gallery/gallery.module';
 
 @NgModule({
   declarations: [],
@@ -9,6 +10,7 @@ import { HomeModule } from './home/home.module';
     CommonModule, 
     AuthenticationModule, 
     HomeModule,
+    GalleryModule,
   ]
 })
 export class ModulesModule { }

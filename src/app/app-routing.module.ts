@@ -10,6 +10,7 @@ import { EducationComponent } from './modules/education/education.component';
 import { EventsComponent } from './modules/authentication/events/events.component';
 import { SpecialEventsComponent } from './modules/authentication/special-events/special-events.component';
 import { RegisterComponent } from './modules/authentication/register/register.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   // { path: 'special', component: SpecialEventsComponent },
 
   // DISABLED FOR INITIAL DEPLOY
-  { path: 'Gallery', component: GalleryComponent },
+  { path: 'Gallery', component: GalleryComponent, canActivate: [AuthGuard] },
   // { path: 'About', component: AboutComponent },
   // { path: 'DIY_Kits', component: DIYKitsComponent },
   // { path: 'Education', component: EducationComponent },

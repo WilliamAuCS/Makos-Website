@@ -12,6 +12,7 @@ import { SpecialEventsModule } from './special-events/special-events.module';
     RegisterModule,
     EventsModule,
     SpecialEventsModule,
-  ]
+  ], 
+  providers: []
 })
 export class AuthenticationModule { }

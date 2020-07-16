@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
     private _router: Router) { }
 
   ngOnInit(): void {
-    document.body.style.backgroundImage = "url(../../../assets/background.jpg)";
     // Initializing userInfo group
     this.userInfo = this.fb.group({
       email: [null, Validators.required],

@@ -1,0 +1,52 @@
+.gallery-container {
+    margin: 5%;
+    background-color: #313131;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid red;
+}
+
+.category-header {
+    text-align: center;
+    margin: 30px 15px 0;
+
+    border: 1px solid yellow;
+}
+
+
+.category-wrapper {
+    margin: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    border: 1px solid blue;
+}
+
+
+.card-wrapper {
+    margin: 20px 15px;
+
+    height: 400px;
+    width: 400px;
+    border: 1px solid pink;
+}
+
+.card-header {
+    text-align: center;
+    margin: 5px;
+
+    border: 1px solid yellow;
+}
+
+.card-body {
+    margin: 5px;
+
+    border: 1px solid green;
+}
+
+.category-spacing {
+    height: 35px;
+    margin: 30px 15px 0;
+}
