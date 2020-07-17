@@ -47,7 +47,7 @@
   font-weight: 900;
 }
 
-.fade-in {
+.fade-in-soft {
   animation: fadeIn ease 2s;
   -webkit-animation: fadeIn ease 2s;
   -moz-animation: fadeIn ease 2s;
