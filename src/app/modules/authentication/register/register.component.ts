@@ -31,8 +31,6 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         // Log either response or error
         res => {
-          // REMOVE AFTER TESTING
-          console.log(res)
           localStorage.setItem('token', res.token)
           this._router.navigate(['/'])
         },
