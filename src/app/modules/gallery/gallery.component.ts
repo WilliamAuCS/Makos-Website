@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from '../gallery.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +13,8 @@ export class GalleryComponent implements OnInit {
   content1 = [];
   content2 = [];
 
-  constructor(private _galleryService: GalleryService) { }
+  constructor(private _galleryService: GalleryService, 
+              private _router: Router) { }
 
   ngOnInit(): void {
     this._galleryService.getGallery().subscribe(
@@ -20,7 +23,14 @@ export class GalleryComponent implements OnInit {
         this.content1 = res.first; 
         this.content2 = res.second;
       },
-      err => console.log(err)
+      err => 
+      {
+        if(err instanceof HttpErrorResponse) {
+          if(err.status == 401) {
+            this._router.navigate(['/register'])
+          }
+        }
+      }
     )
   }
 
