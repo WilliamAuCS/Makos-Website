@@ -19,8 +19,8 @@ const routes: Routes = [
   // { path: 'events', component: EventsComponent },
   // { path: 'special', component: SpecialEventsComponent },
 
-  // DISABLED FOR INITIAL DEPLOY
   { path: 'Gallery', component: GalleryComponent, canActivate: [AuthGuard] },
+  // DISABLED FOR INITIAL DEPLOY
   // { path: 'About', component: AboutComponent },
   // { path: 'DIY_Kits', component: DIYKitsComponent },
   // { path: 'Education', component: EducationComponent },

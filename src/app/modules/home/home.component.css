@@ -1,10 +1,13 @@
-.home-wrapper, .home-wrapper-tablet {
+.home-wrapper {
   margin: 15% auto;
   width: 80%;
 }
 
-.home-wrapper-tablet {
-  width: 100%;
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    margin: inherit;
+    width: 40%;
 }
 
 .logo-container, .logo-container-tablet, .logo-container-mobile {
@@ -30,7 +33,7 @@
   width: 80%;
 }
 
-.background-text, .background-text-tablet {
+#background-text {
   height: auto;
   width: 100%;
   margin: 25px auto 0 auto;
@@ -55,47 +58,23 @@
   -ms-animation: fadeIn ease 2s;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+
+
+@media (max-width: 960px) {
+  .home-wrapper-tablet {
+      width: 100%;
   }
-  100% {
-    opacity: 1;
+  .logo-container-tablet {
+      margin: 40% auto;
+      width: 100%;
+  }
+  .background-text-tablet {
+      font-size: 4vmax;
+      font-weight: 900;
   }
 }
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+@media (max-width: 500px) {
+  .logo-container-mobile {
+      margin: 60% auto;
   }
 }
