@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private toolbar: ToolbarComponent) { }
 
   ngOnInit(): void {
-    this.toolbar.checkLogIn();
+    //this.toolbar.checkLogIn();
   }
 
 }
