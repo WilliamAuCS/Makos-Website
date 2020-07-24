@@ -9,6 +9,7 @@ export class AuthService {
 
   private _registerURL = "http://localhost:3000/api/register";
   private _loginUrl = "http://localhost:3000/api/login";
+  public isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) { }
 

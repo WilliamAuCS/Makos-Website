@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
         // Log either response or error
         res => {
           localStorage.setItem('token', res.token)
+          this._auth.isLoggedIn = true;
           this._router.navigate(['/'])
         },
         err => { console.log(err) }
@@ -45,12 +46,16 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         // Log either response or error
         res => {
-          // REMOVE AFTER TESTING
-          console.log(res)
           localStorage.setItem('token', res.token)
+          this._auth.isLoggedIn = true;
           this._router.navigate(['/'])
         },
         err => { console.log(err) }
       )
+  }
+
+  logoutUser() {
+    localStorage.removeItem('token')
+    this._auth.isLoggedIn = false;
   }
 }

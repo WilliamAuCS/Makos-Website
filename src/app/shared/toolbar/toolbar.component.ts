@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/modules/authentication/auth.service';
+
 
 @Component({
   selector: 'app-toolbar',
@@ -7,12 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  title = 'JA Makos';
-  
+  public isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private _auth: AuthService) { }
+
 
   ngOnInit(): void {
+    
+  }
+
+  checkLogIn() {
+    this.isLoggedIn = this._auth.loggedIn();
+    console.log(this.isLoggedIn);
   }
 
 }
