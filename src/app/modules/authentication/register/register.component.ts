@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
   }
 
   logoutUser() {
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+    this._router.navigate(['/']);
   }
 }
