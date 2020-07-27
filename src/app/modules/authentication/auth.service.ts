@@ -30,7 +30,12 @@ export class AuthService {
         localStorage.setItem('token', res.token)
         this._router.navigate(['/'])
       },
-      err => { console.log(err) }
+      err => { 
+        //if(err.headers.get("statusText"))
+        console.log("before this")
+        console.log(err) 
+      }, 
+      
     )
   }
   
@@ -52,10 +57,10 @@ export class AuthService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token')
+    return !!localStorage.getItem('token');
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 }
