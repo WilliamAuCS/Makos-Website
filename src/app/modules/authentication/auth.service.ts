@@ -11,7 +11,10 @@ export class AuthService {
 
   private _registerURL = "http://localhost:3000/api/register";
   private _loginUrl = "http://localhost:3000/api/login";
+
   public isLoggedIn: boolean;
+  public invalidEmailFormat: boolean = false;
+  public invalidCredentials: boolean = false;
 
   constructor(private http: HttpClient, 
     private _router: Router) {
@@ -28,11 +31,14 @@ export class AuthService {
       // Log either response or error
       res => {
         localStorage.setItem('token', res.token)
+        this.invalidEmailFormat = false;
         this._router.navigate(['/'])
       },
       err => { 
-        //if(err.headers.get("statusText"))
-        console.log("before this")
+        if(err.error == "Invalid Email Format")
+        {
+          this.invalidEmailFormat = true;
+        }
         console.log(err) 
       }, 
       
@@ -46,13 +52,17 @@ export class AuthService {
     .subscribe(
       // Log either response or error
       res => {
+        this.invalidCredentials = false;
         localStorage.setItem('token', res.token)
-
         this.isLoggedIn = true;
-
         this._router.navigate(['/'])
       },
-      err => { console.log(err) }
+      err => { 
+        if(err.error == "Invalid Email Format")
+        {
+          this.invalidCredentials = true;
+        }
+        console.log(err) }
     );
   }
 

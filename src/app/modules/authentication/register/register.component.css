@@ -32,6 +32,11 @@
     margin: 20px 0 0 0;
 }
 
+.warn {
+    color: rgb(177, 51, 51);
+    margin: 0 0 -15px 0;
+}
+
 @media (max-width: 960px) {
     .form-wrapper {flex-direction: column;}
     .card-background { margin: 5% auto;}
