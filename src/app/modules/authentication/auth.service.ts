@@ -74,7 +74,7 @@ export class AuthService {
 
 
   /* 
-  Cookie API taken from https://www.w3schools.com/js/js_cookies.asp
+  Cookie API found at https://www.w3schools.com/js/js_cookies.asp
   */
 
   // Setting cookie in browser
