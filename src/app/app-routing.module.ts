@@ -11,6 +11,7 @@ import { EventsComponent } from './modules/authentication/events/events.componen
 import { SpecialEventsComponent } from './modules/authentication/special-events/special-events.component';
 import { RegisterComponent } from './modules/authentication/register/register.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { MyAccountComponent } from './modules/my-account/my-account.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   // { path: 'DIY_Kits', component: DIYKitsComponent },
   // { path: 'Education', component: EducationComponent },
   { path: 'register', component: RegisterComponent },
+  { path: "myAccount", component: MyAccountComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

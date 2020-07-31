@@ -14,6 +14,8 @@ export class AuthService {
   public invalidEmailFormat: boolean = false;
   public invalidCredentials: boolean = false;
 
+  public userEmail: string; 
+
   constructor(private http: HttpClient,
     private _router: Router) {
     this.isLoggedIn = this.loggedIn();
@@ -30,6 +32,7 @@ export class AuthService {
         res => {
           this.setCookie("token", res.token, 365);
           this.invalidEmailFormat = false;
+          this.userEmail = user.email.split('@')[0];
           this._router.navigate(['/'])
         },
         err => {
@@ -52,10 +55,12 @@ export class AuthService {
           this.invalidCredentials = false;
           this.setCookie("token", res.token, 365);
           this.isLoggedIn = true;
+          this.userEmail = user.email.split('@')[0];
           this._router.navigate(['/'])
         },
         err => {
-          if (err.error == "Invalid Email Format") {
+          if (err.error == "Invalid Email Format" || err.error == "Invalid email") 
+          {
             this.invalidCredentials = true;
           }
           console.log(err)
@@ -85,7 +90,8 @@ export class AuthService {
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
     // Creating cookie in browser
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    // ** ADD ;secure;httpOnly when testing is complete **
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; 
   }
 
   // Cookie retreval

@@ -1,6 +1,7 @@
 .desktop-view {
     display: block;
 }
+
 .toolbar-wrapper {
     height: 64px;
 }
@@ -9,6 +10,7 @@
     height: calc(100% - 64px);
     background: inherit;
 }
+
 .dropdown-wrapper {
     display: none;
     height: 56px;
@@ -17,16 +19,20 @@
 .flexExpand {
     flex: 1 1 auto;
 }
+
 .gapBetween {
     margin-right: 5%;
 }
+
 .home-logo {
     width: 100px;
     margin-top: 15px;
 }
+
 .rightGap {
     margin-right: 5%;
 }
+
 #test {
     font-size: 23px;
     height: 65px;
@@ -35,17 +41,38 @@
 #dropdown-button {
     margin: auto auto auto -5px;
 }
+
 .sidenav-content {
     padding: 20px;
 }
+
 .sidenav-content a {
     display: none;
     margin: 0 0 25px 0;
 }
 
+.menu-back {
+    background-color: #307a2d;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: auto;
+}
+
+.spacing {
+    display: block;
+    margin: 15px 15px;
+    font-size: 1.2em;
+}
+
 /* Replaces toolbar with dropdown if screen width is insufficient */
+
 @media (max-width: 960px) {
-    .desktop-view {display: none;}
-    .dropdown-wrapper {display: flex;}
-    .sidenav-content, .sidenav-content a{display: block;}
+    .desktop-view {
+        display: none;
+    }
+    .dropdown-wrapper {
+        display: flex;
+    }
+    .sidenav-content, .sidenav-content a {
+        display: block;
+    }
 }

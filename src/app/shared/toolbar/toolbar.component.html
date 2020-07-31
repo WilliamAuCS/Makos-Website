@@ -16,7 +16,14 @@
     <a [routerLink]="['/Education']">Education</a>
     <span class='gapBetween'></span>
     <a *ngIf="!this._auth.isLoggedIn" [routerLink]="['/register']">Login/Register</a>
-    <a *ngIf="this._auth.isLoggedIn" [routerLink]="['/register']">My Account</a>
+
+    <a *ngIf="this._auth.isLoggedIn" [matMenuTriggerFor]="menu">My Account</a>
+    <mat-menu style="background-color: red;" #menu="matMenu">
+      <a class="spacing" [routerLink]="['/myAccount']">My Account<br></a>
+      <span></span>
+      <a class="spacing">Logout</a>
+    </mat-menu>
+
     <span class='rightGap'></span>
   </mat-toolbar>
 
