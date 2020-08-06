@@ -10,8 +10,12 @@ import { Router } from '@angular/router';
 })
 export class GalleryComponent implements OnInit {
 
-  content1 = [];
-  content2 = [];
+  // Array of json object containing product information
+  content = [];
+  // Array containing link to content primary image in respect to index
+  content_link = [];
+  // Array containing amount of secondary images in respect to index
+  content_amount = [];
 
   constructor(private _galleryService: GalleryService, 
               private _router: Router) { }
@@ -20,8 +24,12 @@ export class GalleryComponent implements OnInit {
     this._galleryService.getGallery().subscribe(
       res => 
       {
-        this.content1 = res.first; 
-        this.content2 = res.second;
+        this.content = res; 
+        for(let i = 0; i < this.content.length; i++)
+        {
+          this.content_link.push(this.content[i].img_link);
+          this.content_amount.push(this.content[i].img_amount);
+        }
       },
       err => 
       {
@@ -31,7 +39,6 @@ export class GalleryComponent implements OnInit {
           }
         }
       }
-    )
+    ) 
   }
-
 }

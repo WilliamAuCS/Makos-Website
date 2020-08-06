@@ -1,35 +1,18 @@
 <div class="gallery-container fade-in">
-    <div class="category-header">
-        <h1>Category1 Name</h1>
-    </div>
-    <div class="category-wrapper">
 
-        <div class="card-wrapper" *ngFor="let cont of content1">
-            <div class="card-header">
-                <h2>{{cont.name}}</h2>
-            </div>
-            <div class="card-body">
-                <p>{{cont.description}}</p>
-            </div>
-        </div>
+    <mat-card class="category-header" *ngFor="let cont of content">
+        <mat-card-header>
+            <mat-card-title>{{cont.category}}</mat-card-title>
+            <mat-card-subtitle>Color: {{cont.color}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{cont.img_link}}" alt="Test image">
 
-    </div>
-
-    <span class="category-spacing"></span>
-
-    <div class="category-header">
-        <h1>Category2 Name</h1>
-    </div>
-    <div class="category-wrapper">
-
-        <div class="card-wrapper" *ngFor="let conte of content2">
-            <div class="card-header">
-                <h2>{{conte.name}}</h2>
-            </div>
-            <div class="card-body">
-                <p>{{conte.description}}</p>
-            </div>
-        </div>
-
-    </div>
+        <mat-card-content>
+            <p>{{cont.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button>See More</button>
+        </mat-card-actions>
+    </mat-card>
+    
 </div>
