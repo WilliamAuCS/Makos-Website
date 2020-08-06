@@ -9,6 +9,7 @@ export class AuthService {
 
   private _registerURL = "http://localhost:3000/api/register";
   private _loginUrl = "http://localhost:3000/api/login";
+  private _deleteAccountUrl = "http://localhost:3000/api/deleteAccount"
 
   public isLoggedIn: boolean;
   public invalidEmailFormat: boolean = false;
@@ -68,13 +69,30 @@ export class AuthService {
       );
   }
 
+  logoutUser() {
+    this.setCookie("token", "", 0);
+    this.isLoggedIn = false;
+    this.userEmail = "";
+    this._router.navigate(["/"]);
+    window.location.reload();
+  }
+
   loggedIn() {
     return !!this.getCookie("token");
   }
 
   getToken() {
-    console.log(this.getCookie("token"))
     return this.getCookie("token");
+  }
+
+  deleteAccount() {
+    this.logoutUser();
+    this.http.put(this._deleteAccountUrl, this.userEmail)
+    .subscribe(
+      res => {
+        console.log(res);
+      }
+    );
   }
 
 

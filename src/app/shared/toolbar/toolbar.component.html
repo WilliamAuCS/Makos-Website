@@ -18,10 +18,9 @@
     <a *ngIf="!this._auth.isLoggedIn" [routerLink]="['/register']">Login/Register</a>
 
     <a *ngIf="this._auth.isLoggedIn" [matMenuTriggerFor]="menu">My Account</a>
-    <mat-menu style="background-color: red;" #menu="matMenu">
+    <mat-menu #menu="matMenu">
       <a class="spacing" [routerLink]="['/myAccount']">My Account<br></a>
-      <span></span>
-      <a class="spacing">Logout</a>
+      <a class="spacing" (click)="logoutUser()">Logout</a>
     </mat-menu>
 
     <span class='rightGap'></span>

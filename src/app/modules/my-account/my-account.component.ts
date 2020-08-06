@@ -13,4 +13,12 @@ export class MyAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logoutUser() {
+    this._auth.logoutUser();
+  }
+
+  deleteAccount() {
+    this._auth.deleteAccount();
+  }
+
 }

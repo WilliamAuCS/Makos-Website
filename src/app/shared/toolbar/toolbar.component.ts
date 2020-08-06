@@ -12,9 +12,12 @@ export class ToolbarComponent implements OnInit {
 
   constructor(public _auth: AuthService) { }
 
-
   ngOnInit(): void {
     
+  }
+
+  logoutUser() {
+    this._auth.logoutUser();
   }
 
 }
