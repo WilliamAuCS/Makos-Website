@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../authentication/auth.service';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-my-account',
@@ -8,9 +9,13 @@ import { AuthService } from '../authentication/auth.service';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor(public _auth: AuthService) { }
+  userEmail: String;
+
+  constructor(public _auth: AuthService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.userEmail = this._auth.getEmail();
   }
 
   logoutUser() {
@@ -21,4 +26,21 @@ export class MyAccountComponent implements OnInit {
     this._auth.deleteAccount();
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result === true) {
+        this._auth.deleteAccount();
+      }
+    })
+  }
+
 }
+
+@Component({
+  selector: 'app-confirm-delete-dialog',
+  templateUrl: "confirm-delete-dialog.html",
+})
+export class ConfirmDeleteDialog { }

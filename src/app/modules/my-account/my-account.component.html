@@ -1,10 +1,10 @@
 <div class="account-container">
     <div class="account-header">
         <h1>My Account</h1>
-        <h3>Welcome {{this._auth.userEmail}}</h3>
+        <h3>Welcome {{this.userEmail}}</h3>
     </div>
     <div class="account-body">
         <a (click)="logoutUser()">Logout<br></a>
-        <a (click)="deleteAccount()">Delete Account</a>
+        <a (click)="openDialog()">Delete Account</a>
     </div>
 </div>
