@@ -9,13 +9,17 @@ export class AuthService {
 
   private _registerURL = "http://localhost:3000/api/register";
   private _loginUrl = "http://localhost:3000/api/login";
-  private _deleteAccountUrl = "http://localhost:3000/api/deleteAccount"
+  private _deleteAccountUrl = "http://localhost:3000/api/user/";
 
   public isLoggedIn: boolean;
-  public invalidEmailFormat: boolean = false;
-  public invalidCredentials: boolean = false;
 
-  public userEmail: string; 
+  // Used to handle register errors
+  public register_error: boolean = false;
+  public register_error_response: String;
+
+  // Used to handle login errors
+  public login_error: boolean = false;
+  public login_error_response: String;
 
   constructor(private http: HttpClient,
     private _router: Router) {
@@ -26,21 +30,24 @@ export class AuthService {
   // Sends http POST request to backend api url containing user credentials
   registerUser(user: { email: string, password: string }) {
     // Register user to db and return response details as observable
-    this.http.post<any>(this._registerURL, user)
+    this.http.post<{ token: string, payloadEmail: string }>(this._registerURL, user)
       // Subscribing to observable
       .subscribe(
         // Log either response or error
         res => {
-          this.setCookie("token", res.token, 365);
-          this.invalidEmailFormat = false;
-          this.userEmail = user.email.split('@')[0];
-          this._router.navigate(['/'])
+          this.register_error = false;
+          this.logginProcess(res);
         },
         err => {
           if (err.error == "Invalid Email Format") {
-            this.invalidEmailFormat = true;
+            this.register_error = true;
+            this.register_error_response = "Invalid Email Format";
           }
-          console.log(err)
+          else if (err.error == "Email in use") {
+            this.register_error = true;
+            this.register_error_response = "Email already in use";
+          }
+          console.log(err);
         },
 
       )
@@ -48,33 +55,43 @@ export class AuthService {
 
   // Sends http POST request to backend api url containing user credentials
   loginUser(user) {
-    this.http.post<{ token: string }>(this._loginUrl, user)
+    this.http.post<{ token: string, payloadEmail: string }>(this._loginUrl, user)
       // Subscribing to observable
       .subscribe(
         // Log either response or error
         res => {
-          this.invalidCredentials = false;
-          this.setCookie("token", res.token, 365);
-          this.isLoggedIn = true;
-          this.userEmail = user.email.split('@')[0];
-          this._router.navigate(['/'])
+          this.login_error = false;
+          this.logginProcess(res);
         },
         err => {
-          if (err.error == "Invalid Email Format" || err.error == "Invalid email") 
-          {
-            this.invalidCredentials = true;
+          if (err.error == "Invalid Email Format" || err.error == "Invalid email") {
+            this.login_error = true;
+            this.login_error_response = "Invalid credentials";
           }
           console.log(err)
         }
       );
   }
 
+  // Standard user loggin process
+  logginProcess(res) {
+    // Setting JWT token in cookie
+    this.setCookie("token", res.token, 365);
+    // Encoding user email with base64 and setting in cookie
+    this.setCookie("usem", btoa(res.payloadEmail), 365);
+    this.isLoggedIn = true;
+    // Navigation to homepage
+    this._router.navigate(['/']);
+  }
+
+  // Logging out the user
   logoutUser() {
+    // Removing cookies (2)
     this.setCookie("token", "", 0);
+    this.setCookie("usem", "", 0);
     this.isLoggedIn = false;
-    this.userEmail = "";
+    // Navigation to homepage
     this._router.navigate(["/"]);
-    window.location.reload();
   }
 
   loggedIn() {
@@ -86,13 +103,23 @@ export class AuthService {
   }
 
   deleteAccount() {
-    this.logoutUser();
-    this.http.put(this._deleteAccountUrl, this.userEmail)
-    .subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+    this.http.delete<{ statusCode: String }>(this._deleteAccountUrl + this.getEmail())
+      .subscribe(
+        res => {
+          if (res.statusCode == "200") {
+            console.log("Acount deleted");
+            this.logoutUser();
+          }
+        },
+        err => {
+          console.error(err);
+        }
+      );
+  }
+
+  // Retrieves email from cookie and decodes using base64
+  getEmail() {
+    return atob(this.getCookie("usem"));
   }
 
 
@@ -101,33 +128,28 @@ export class AuthService {
   */
 
   // Setting cookie in browser
-  setCookie(cname, cvalue, exdays) 
-  {
+  setCookie(cname, cvalue, exdays) {
     // Creating date object
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
     // Creating cookie in browser
     // ** ADD ;secure;httpOnly when testing is complete **
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; 
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
   // Cookie retreval
-  getCookie(cname)
-  {
+  getCookie(cname) {
     var name = cname + "=";
     // Creating array to hold cookie parts split off of ';'
     var ca = document.cookie.split(';');
     // Looping through array
-    for(var i = 0; i < ca.length; i++)
-    {
+    for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
-      while(c.charAt(0) == ' ')
-      {
+      while (c.charAt(0) == ' ') {
         c = c.substring(1);
       }
-      if(c.indexOf(name) == 0)
-      {
+      if (c.indexOf(name) == 0) {
         return c.substring(name.length, c.length);
       }
     }

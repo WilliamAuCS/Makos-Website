@@ -20,7 +20,7 @@
                             <input formControlName="password" type="password" required>
                         </label>
                     </div>
-                    <p *ngIf="this._auth.invalidEmailFormat" class="warn">Invalid Email Format</p>
+                    <p *ngIf="this._auth.register_error" class="warn">{{ this._auth.register_error_response }}</p>
                     <button mat-raised-button (click)="registerUser()" class="form-button">Register</button>
                 </form>
             </div>
@@ -47,7 +47,7 @@
                             <input formControlName="password" type="password" required>
                         </label>
                     </div>
-                    <p *ngIf="this._auth.invalidCredentials" class="warn">Invalid credentials</p>
+                    <p *ngIf="this._auth.login_error" class="warn">{{ this._auth.login_error_response }}</p>
                     <button mat-raised-button (click)="loginUser()" class="form-button">Login</button>
                 </form>
             </div>
