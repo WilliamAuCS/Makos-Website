@@ -6,6 +6,7 @@ import { RegisterComponent } from './register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
     SharedModule, 
     HttpClientModule,
     MatButtonModule,
+    MatFormFieldModule, 
   ], 
   providers: [AuthService]
 })

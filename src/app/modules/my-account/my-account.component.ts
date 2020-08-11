@@ -15,7 +15,7 @@ export class MyAccountComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.userEmail = this._auth.getEmail();
+    this.userEmail = this._auth.getEmail().split("@")[0];
   }
 
   logoutUser() {

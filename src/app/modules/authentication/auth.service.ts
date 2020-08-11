@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class AuthService {
   private _registerURL = "http://localhost:3000/api/register";
   private _loginUrl = "http://localhost:3000/api/login";
   private _deleteAccountUrl = "http://localhost:3000/api/user/";
+  private _verification = "http://localhost:3000/api/verification/";
 
   public isLoggedIn: boolean;
 
@@ -55,7 +56,7 @@ export class AuthService {
 
   // Sends http POST request to backend api url containing user credentials
   loginUser(user) {
-    this.http.post<{ token: string, payloadEmail: string }>(this._loginUrl, user)
+    this.http.post<{ token: String, payloadEmail: String}>(this._loginUrl, user)
       // Subscribing to observable
       .subscribe(
         // Log either response or error
@@ -115,6 +116,23 @@ export class AuthService {
           console.error(err);
         }
       );
+  }
+
+  verifyToken() {
+    this.http.get<{ status: String }>(this._verification)
+    .subscribe(
+      res => {
+        if(res.status == "200") 
+        {
+          return true;
+        }
+      }, 
+      err => {
+        console.error(err);
+        return false;
+      }
+    )
+    return false;
   }
 
   // Retrieves email from cookie and decodes using base64
