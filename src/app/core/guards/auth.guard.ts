@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../../modules/authentication/auth.service';
+import { map, tap } from "rxjs/operators";
+import { Observable } from 'rxjs';
 
 @Injectable(
 
@@ -22,19 +24,53 @@ export class AuthGuard implements CanActivate {
   }
 }
 
+@Injectable(
+
+  )
 export class TokenGuard implements CanActivate {
   
   constructor(private _authService: AuthService,
      private _router: Router) {}
   
   // Check if user is logged in before allowing access
-  canActivate(): boolean {
-    if(this._authService.verifyToken()) {
-      return true;
-    }
-    else {
-      this._router.navigate(['/register']);
-      return false;
-    }
+  canActivate(): Observable<boolean> {
+    return this._authService.verifyToken()
+    .pipe(
+      tap( (res) => console.log("this is before: ", res)),
+      map( (res) => {
+        if(res.response === "Authorized") 
+        {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }), 
+      tap( (res) => console.log("this is before: ", res))
+    )
+
+
+    // .subscribe(
+      
+    //   res => {
+    //     if(res.status == "200") 
+    //     {
+    //       return true;
+    //     }
+    //   }, 
+    //   err => {
+    //     console.error(err);
+    //     return false;
+    //   }
+    // )
+
+
+    // if(this._authService.verifyToken()) {
+    //   return true;
+    // }
+    // else {
+    //   this._router.navigate(['/register']);
+    //   return false;
+    // }
   }
 }

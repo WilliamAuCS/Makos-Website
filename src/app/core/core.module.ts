@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard, TokenGuard } from './guards/auth.guard';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './interceptor/token-interceptor.service';
 
@@ -9,7 +9,7 @@ import { TokenInterceptorService } from './interceptor/token-interceptor.service
   imports: [
     CommonModule, 
   ], 
-  providers: [AuthGuard, 
+  providers: [AuthGuard, TokenGuard,
   {
     provide: HTTP_INTERCEPTORS, 
     useClass: TokenInterceptorService, 

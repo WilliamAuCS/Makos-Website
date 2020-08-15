@@ -7,10 +7,12 @@ import { Router, CanActivate } from '@angular/router';
 })
 export class AuthService {
 
-  private _registerURL = "http://localhost:3000/api/register";
-  private _loginUrl = "http://localhost:3000/api/login";
-  private _deleteAccountUrl = "http://localhost:3000/api/user/";
-  private _verification = "http://localhost:3000/api/verification/";
+  private _registerURL = "http://34.94.238.223:8080/api/register";
+  private _loginUrl = "http://localhost:8080/api/login";
+  //private _loginUrl = "http://34.94.238.223:8080/api/login";
+  private _deleteAccountUrl = "http://34.94.238.223:8080/api/user/";
+  private _verification = "http://localhost:8080/api/verification/";
+  //private _verification = "http://34.94.238.223:8080/api/verification/";
 
   public isLoggedIn: boolean;
 
@@ -119,20 +121,8 @@ export class AuthService {
   }
 
   verifyToken() {
-    this.http.get<{ status: String }>(this._verification)
-    .subscribe(
-      res => {
-        if(res.status == "200") 
-        {
-          return true;
-        }
-      }, 
-      err => {
-        console.error(err);
-        return false;
-      }
-    )
-    return false;
+    return this.http.get<any>(this._verification)
+    
   }
 
   // Retrieves email from cookie and decodes using base64

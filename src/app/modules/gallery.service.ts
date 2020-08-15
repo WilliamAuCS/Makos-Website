@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GalleryService {
 
-  private _galleryURL = "http://localhost:3000/api/gallery";
+  private _galleryURL = "http://localhost:8080/api/gallery";
 
   constructor(private http: HttpClient) { }
 
