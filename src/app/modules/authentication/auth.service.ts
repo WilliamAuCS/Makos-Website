@@ -67,7 +67,11 @@ export class AuthService {
           this.logginProcess(res);
         },
         err => {
-          if (err.error == "Invalid Email Format" || err.error == "Invalid email") {
+          if (err.error == "Invalid Email Format") {
+            this.login_error = true;
+            this.login_error_response = "Invalid email format";
+          }
+          else if(err.error == "Invalid credentials") {
             this.login_error = true;
             this.login_error_response = "Invalid credentials";
           }

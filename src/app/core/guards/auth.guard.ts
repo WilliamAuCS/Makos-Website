@@ -36,7 +36,6 @@ export class TokenGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this._authService.verifyToken()
     .pipe(
-      tap( (res) => console.log("this is before: ", res)),
       map( (res) => {
         if(res.response === "Authorized") 
         {
@@ -45,8 +44,7 @@ export class TokenGuard implements CanActivate {
         else {
           return false;
         }
-      }), 
-      tap( (res) => console.log("this is before: ", res))
+      })
     )
 
 
