@@ -16,7 +16,7 @@ const routes: Routes = [
 
   //{ path: '', redirectTo: '/events', pathMatch: 'full' },
 
-  { path: 'Gallery', component: GalleryComponent, canActivate: [AuthGuard] },
+  { path: 'gallery', component: GalleryComponent, canActivate: [AuthGuard] },
   // DISABLED FOR INITIAL DEPLOY
   // { path: 'About', component: AboutComponent },
   // { path: 'DIY_Kits', component: DIYKitsComponent },

@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router, CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _registerURL = "http://34.94.238.223:8080/api/register";
-  private _loginUrl = "http://localhost:8080/api/login";
-  //private _loginUrl = "http://34.94.238.223:8080/api/login";
-  private _deleteAccountUrl = "http://34.94.238.223:8080/api/user/";
-  private _verification = "http://localhost:8080/api/verification/";
-  //private _verification = "http://34.94.238.223:8080/api/verification/";
+  private _registerURL = "https://server.makosusa.com/api/register";
+  private _loginUrl = "https://server.makosusa.com/api/login";
+  private _deleteAccountUrl = "https://server.makosusa.com/api/user/";
+  private _verification = "https://server.makosusa.com/api/verification/";
+
+  // FOR TESTING PURPOSES ONLY
+  // private _registerURL = "http://localhost:8080/api/register";
+  // private _loginUrl = "http://localhost:8080/api/login";
+  // private _deleteAccountUrl = "http://localhost:8080/api/user/";
+  // private _verification = "http://localhost:8080/api/verification/";
 
   public isLoggedIn: boolean;
 
@@ -147,7 +151,7 @@ export class AuthService {
     var expires = "expires=" + d.toUTCString();
     // Creating cookie in browser
     // ** ADD ;secure;httpOnly when testing is complete **
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";secure;httpOnly;path=/";
   }
 
   // Cookie retreval
