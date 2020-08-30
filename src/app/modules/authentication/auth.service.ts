@@ -151,7 +151,7 @@ export class AuthService {
     var expires = "expires=" + d.toUTCString();
     // Creating cookie in browser
     // ** ADD ;secure;httpOnly when testing is complete **
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";secure;httpOnly;path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
   // Cookie retreval
