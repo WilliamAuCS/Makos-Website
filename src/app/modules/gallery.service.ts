@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GalleryService {
 
-  // private _galleryURL = "https://server.makosusa.com/api/gallery";
+  private _galleryURL = "https://server.makosusa.com/api/gallery";
 
   // FOR TESTING PURPOSES ONLY
-  private _galleryURL = "http://localhost:8080/api/gallery";
+  // private _galleryURL = "http://localhost:8080/api/gallery";
 
   constructor(private http: HttpClient) { }
 
