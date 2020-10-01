@@ -27,6 +27,11 @@ body {
   background-size: cover;
 }
 
+/* Removing gray background when sidebar is open */
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
+}
+
 /* Animation */
 
 .fade-in {
