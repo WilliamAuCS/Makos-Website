@@ -1,12 +1,14 @@
 .form-wrapper {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .card-background {
+    margin-top: 20%;
     background-color: #307a2d;
-    margin: 10% 10%;
     height: 360px;
-    width: 350px;
+    width: 325px;
 }
 .card-wrapper {
     border: 2px solid black;
@@ -35,16 +37,20 @@
 }
 
 @media (max-width: 960px) {
-    .form-wrapper {flex-direction: column;}
-    .card-background { margin: 5% auto;}
+    .card-background { 
+        margin: 35% auto;
+        max-width: 350px;
+    }
 }
 @media (max-width: 500px) {
     .card-background {
-        height: 340px;
-        width: 250px;
+        margin-top: 5%;
+        margin-bottom: 0;
+        max-height: 300px;
+        max-width: 350px;
     }
     .card-body {
-        margin: 0 0 10px;
+        margin: 0 0 20px;
         padding: 0 10px;
     }
 }
