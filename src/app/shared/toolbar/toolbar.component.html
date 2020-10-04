@@ -48,7 +48,8 @@
     <a [routerLink]="['/About']">About</a>
     <a [routerLink]="['/DIY_Kits']">DIY Kits</a>
     <a [routerLink]="['/Education']">Education</a>
-    <a [routerLink]="['/register']">Login/Register</a>
+    <a *ngIf="this._auth.isLoggedIn" [routerLink]="['/myAccount']">My Account</a>
+    <a *ngIf="!this._auth.isLoggedIn" [routerLink]="['/register']">Login/Register</a>
 
   </mat-sidenav>
 

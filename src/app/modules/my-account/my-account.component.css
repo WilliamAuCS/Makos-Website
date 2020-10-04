@@ -1,20 +1,15 @@
 .account-container {
-    border: 1px solid yellow;
+    padding: 10px;
     max-width: 500px;
-    background-color: rgb(56, 56, 56);
     margin: 50px auto;
+    background-color: rgb(56, 56, 56);
 }
 .account-header {
     text-align: center;
     margin: 20px;
-
-    border: 1px solid blue;
 }
 .account-body {
     margin: 20px;
-
-    
-    border: 1px solid green;
 }
 .account-body a{
     display: block;
