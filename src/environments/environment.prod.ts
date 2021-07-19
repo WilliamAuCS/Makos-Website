@@ -5,4 +5,6 @@ export const environment = {
   _loginUrl: 'https://server.makosusa.com/api/login',
   _deleteAccountUrl: 'https://server.makosusa.com/api/user/',
   _verification: 'https://server.makosusa.com/api/verification/',
+
+  //testing
 };
